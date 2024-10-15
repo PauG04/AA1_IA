@@ -3,20 +3,24 @@
 PathFollowing::PathFollowing()
 {
 	currentTarget = 0;
-	minDistance = 0.1f;
+	minDistance = 1.f;
 }
 
 void PathFollowing::ApplySteeringForce(Agent* agent, float dtime)
 {
+	if(path.size() == 0 || agent->getTarget() !=path[path.size()-1])
+	{
+
+		path.push_back(agent->getTarget());
+	}
+
 	if (currentTarget >= path.size())
 		return;
 
 	if (path[currentTarget] == agent->getTarget())
 		return;
 
-	path.push_back(agent->getTarget());
-
-	Vector2D desiredVelocity = agent->getTarget() - agent->getPosition();
+	Vector2D desiredVelocity = path[currentTarget] - agent->getPosition();
 	desiredVelocity.Normalize();
 	desiredVelocity *= agent->getMaxVelocity();
 	agent->setSteering_force(desiredVelocity - agent->getVelocity());
