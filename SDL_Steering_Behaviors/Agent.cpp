@@ -1,4 +1,9 @@
 #include "Agent.h"
+#include "Seek.h"
+#include "Flee.h"
+#include "PathFollowing.h"
+#include "Flocking.h"
+#include "CompositeWeightedSum.h"
 
 using namespace std;
 
@@ -16,7 +21,7 @@ Agent::Agent() : sprite_texture(0),
 	             sprite_h(0),
 	             draw_sprite(false)
 {
-	steering_behavior = new SteeringBehavior;
+	steering_behavior = nullptr;
 }
 
 Agent::~Agent()
@@ -87,15 +92,26 @@ void Agent::update(float dtime, SDL_Event *event)
 	case SDL_KEYDOWN:
 		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
 			draw_sprite = !draw_sprite;
+		else if (event->key.keysym.scancode == SDL_SCANCODE_1)
+			steering_behavior = new Seek();
+		else if (event->key.keysym.scancode == SDL_SCANCODE_2)
+			steering_behavior = new PathFollowing();
+		else if (event->key.keysym.scancode == SDL_SCANCODE_3)
+			steering_behavior = new Flee();
+		else if (event->key.keysym.scancode == SDL_SCANCODE_4)
+			steering_behavior = new Flocking();
+		else if (event->key.keysym.scancode == SDL_SCANCODE_5)
+			steering_behavior = new CompositeWeightedSum();
 		break;
 	default:
 		break;
 	}
 
-	Vector2D steering_force = this->Behavior()->Seek(this, this->getTarget(), dtime);
+	if (Behavior() != nullptr)
+		Behavior()->ApplySteeringForce(this, dtime);
 
-	Vector2D acceleration = steering_force / mass;
-	velocity = velocity + acceleration * dtime;
+	/*Vector2D acceleration = steering_force / mass;
+	velocity = velocity + acceleration * dtime;*/
 	velocity = velocity.Truncate(max_velocity);
 
 	position = position + velocity * dtime;
