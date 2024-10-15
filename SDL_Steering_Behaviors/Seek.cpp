@@ -1,6 +1,12 @@
 #include "Seek.h"
 
-void ApplySteeringForce(Agent* agent, float dtime)
+void Seek::ApplySteeringForce(Agent* agent, float dtime)
 {
-	//Haz cosas
+	Vector2D desiredVelocity = agent->getTarget() - agent->getPosition();
+	desiredVelocity.Normalize();
+	desiredVelocity *= agent->getMaxVelocity();
+	agent->setSteering_force(desiredVelocity - agent->getVelocity());
+	agent->setSteering_force(agent->getSteering_force() / agent->getMaxVelocity());
+	agent->setSteering_force(agent->getSteering_force() * agent->getMaxForce());
+	
 }

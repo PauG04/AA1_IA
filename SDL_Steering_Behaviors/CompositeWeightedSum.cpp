@@ -1,6 +1,6 @@
 #include "CompositeWeightedSum.h"
 
-void ApplySteeringForce(Agent* agent, float dtime)
+void CompositeWeightedSum::ApplySteeringForce(Agent* agent, float dtime)
 {
 	//Haz cosas
 }

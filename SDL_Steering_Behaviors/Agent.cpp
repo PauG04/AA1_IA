@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Agent::Agent() : sprite_texture(0),
+Agent::Agent(SteeringBehavior *_steering_behavior) : sprite_texture(0),
                  position(Vector2D(100, 100)),
 	             target(Vector2D(1000, 100)),
 	             velocity(Vector2D(0,0)),
@@ -21,7 +21,7 @@ Agent::Agent() : sprite_texture(0),
 	             sprite_h(0),
 	             draw_sprite(false)
 {
-	steering_behavior = nullptr;
+	steering_behavior = _steering_behavior;
 }
 
 Agent::~Agent()
@@ -52,9 +52,19 @@ Vector2D Agent::getVelocity()
 	return velocity;
 }
 
+Vector2D Agent::getSteering_force()
+{
+	return steering_force;
+}
+
 float Agent::getMaxVelocity()
 {
 	return max_velocity;
+}
+
+float Agent::getMaxForce()
+{
+	return max_force;
 }
 
 void Agent::setPosition(Vector2D _position)
@@ -72,6 +82,11 @@ void Agent::setVelocity(Vector2D _velocity)
 	velocity = _velocity;
 }
 
+void Agent::setSteering_force(Vector2D _steering_force)
+{
+	steering_force = _steering_force;
+}
+
 void Agent::setMass(float _mass)
 {
 	mass = _mass;
@@ -84,7 +99,6 @@ void Agent::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 
 void Agent::update(float dtime, SDL_Event *event)
 {
-
 	//cout << "agent update:" << endl;
 
 	switch (event->type) {
@@ -92,15 +106,15 @@ void Agent::update(float dtime, SDL_Event *event)
 	case SDL_KEYDOWN:
 		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
 			draw_sprite = !draw_sprite;
-		else if (event->key.keysym.scancode == SDL_SCANCODE_1)
+		else if (event->key.keysym.scancode == SDL_SCANCODE_A)
 			steering_behavior = new Seek();
-		else if (event->key.keysym.scancode == SDL_SCANCODE_2)
+		else if (event->key.keysym.scancode == SDL_SCANCODE_S)
 			steering_behavior = new PathFollowing();
-		else if (event->key.keysym.scancode == SDL_SCANCODE_3)
+		else if (event->key.keysym.scancode == SDL_SCANCODE_D)
 			steering_behavior = new Flee();
-		else if (event->key.keysym.scancode == SDL_SCANCODE_4)
+		else if (event->key.keysym.scancode == SDL_SCANCODE_G)
 			steering_behavior = new Flocking();
-		else if (event->key.keysym.scancode == SDL_SCANCODE_5)
+		else if (event->key.keysym.scancode == SDL_SCANCODE_H)
 			steering_behavior = new CompositeWeightedSum();
 		break;
 	default:
@@ -110,16 +124,13 @@ void Agent::update(float dtime, SDL_Event *event)
 	if (Behavior() != nullptr)
 		Behavior()->ApplySteeringForce(this, dtime);
 
-	/*Vector2D acceleration = steering_force / mass;
-	velocity = velocity + acceleration * dtime;*/
+	Vector2D acceleration = steering_force / mass;
+	velocity = velocity + acceleration * dtime;
 	velocity = velocity.Truncate(max_velocity);
 
 	position = position + velocity * dtime;
-
-
 	// Update orientation
 	orientation = (float)(atan2(velocity.y, velocity.x) * RAD2DEG);
-
 
 	// Trim position values to window size
 	if (position.x < 0) position.x = TheApp::Instance()->getWinSize().x;

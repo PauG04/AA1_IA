@@ -8,7 +8,6 @@
 #include "utils.h"
 #include "SteeringBehavior.h"
 
-
 class Agent
 {
 	friend class SteeringBehavior;
@@ -18,6 +17,7 @@ private:
 	Vector2D position;
 	Vector2D velocity;
 	Vector2D target;
+	Vector2D steering_force;
 
 	float mass;
 	float orientation;
@@ -33,16 +33,19 @@ private:
 	int sprite_h;
 
 public:
-	Agent();
+	Agent(SteeringBehavior *steering_behavior);
 	~Agent();
 	SteeringBehavior *Behavior();
 	Vector2D getPosition();
 	Vector2D getTarget();
 	Vector2D getVelocity();
+	Vector2D getSteering_force();
 	float getMaxVelocity();
+	float getMaxForce();
 	void setPosition(Vector2D position);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
+	void setSteering_force(Vector2D steering_force);
 	void setMass(float mass);
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 	void update(float dtime, SDL_Event *event);
