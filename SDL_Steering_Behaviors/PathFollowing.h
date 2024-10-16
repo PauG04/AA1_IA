@@ -1,6 +1,7 @@
 #pragma once
 #include "SteeringBehavior.h"
 #include <vector>
+
 class PathFollowing : public SteeringBehavior
 {
 private:
@@ -10,7 +11,7 @@ private:
 
 public:
 	PathFollowing();
-	void virtual ApplySteeringForce(Agent* agent, float dtime) override;
+	Vector2D virtual ApplySteeringForce(Agent* agent, float dtime) override;
 
 };
 

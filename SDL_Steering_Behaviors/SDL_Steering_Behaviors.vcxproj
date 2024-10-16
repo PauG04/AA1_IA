@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="AgentManager.h" />
     <ClInclude Include="CompositeWeightedSum.h" />
     <ClInclude Include="Flee.h" />
     <ClInclude Include="Flocking.h" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="AgentManager.cpp" />
     <ClCompile Include="CompositeWeightedSum.cpp" />
     <ClCompile Include="Flee.cpp" />
     <ClCompile Include="Flocking.cpp" />

@@ -3,7 +3,7 @@
 class Flee : public SteeringBehavior
 {
 public:
-	void virtual ApplySteeringForce(Agent* agent, float dtime) override;
+	Vector2D virtual ApplySteeringForce(Agent* agent, float dtime) override;
 
 };
 

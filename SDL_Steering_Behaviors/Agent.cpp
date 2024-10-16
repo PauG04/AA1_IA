@@ -122,7 +122,7 @@ void Agent::update(float dtime, SDL_Event *event)
 	}
 
 	if (Behavior() != nullptr)
-		Behavior()->ApplySteeringForce(this, dtime);
+		steering_force = Behavior()->ApplySteeringForce(this, dtime);
 
 	Vector2D acceleration = steering_force / mass;
 	velocity = velocity + acceleration * dtime;

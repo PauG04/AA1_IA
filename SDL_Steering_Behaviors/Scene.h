@@ -1,11 +1,15 @@
 #pragma once
 #include <iostream>
 #include <SDL.h>
+#include "AgentManager.h"
 
 class Scene
 {
 public:
-	Scene() {};
+	Scene() 
+	{
+		
+	};
 	virtual ~Scene() {};
 	virtual void update(float dtime, SDL_Event *event) = 0;
 	virtual void draw() = 0;

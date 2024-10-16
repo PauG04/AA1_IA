@@ -1,4 +1,5 @@
 #include "PathFollowing.h"
+#include "AgentManager.h"
 
 PathFollowing::PathFollowing()
 {
@@ -6,7 +7,7 @@ PathFollowing::PathFollowing()
 	minDistance = 10.f;
 }
 
-void PathFollowing::ApplySteeringForce(Agent* agent, float dtime)
+Vector2D PathFollowing::ApplySteeringForce(Agent* agent, float dtime)
 {
 	if(path.size() == 0 || agent->getTarget() != path[path.size()-1])
 	{
@@ -15,19 +16,21 @@ void PathFollowing::ApplySteeringForce(Agent* agent, float dtime)
 
 	if (currentTarget >= path.size()) {
 		agent->setSteering_force(Vector2D(0, 0));
-		return;
+		return Vector2D();
 	}
+
 
 	Vector2D desiredVelocity = path[currentTarget] - agent->getPosition();
 	desiredVelocity.Normalize();
 	desiredVelocity *= agent->getMaxVelocity();
-	agent->setSteering_force(desiredVelocity - agent->getVelocity());
-	agent->setSteering_force(agent->getSteering_force() / agent->getMaxVelocity());
-	agent->setSteering_force(agent->getSteering_force() * agent->getMaxForce());
-
+	force = desiredVelocity - agent->getVelocity();
+	force /= agent->getMaxVelocity();
+	
 	float distance = desiredVelocity.Distance(agent->getPosition(), path[currentTarget]);
 	if (distance <= minDistance)
 	{
 		currentTarget++;
 	}
+
+	return force * agent->getMaxForce();
 }

@@ -1,14 +1,15 @@
 #pragma once
-#include "Agent.h"
 #include "Vector2D.h"
 
 class Agent;
 
 class SteeringBehavior
 {
+protected:
+	Vector2D force;
 public:
 	SteeringBehavior();
 	~SteeringBehavior();
 
-	void virtual ApplySteeringForce(Agent* agent, float dtime) = 0;
+	Vector2D virtual ApplySteeringForce(Agent* agent, float dtime) = 0;
 };
