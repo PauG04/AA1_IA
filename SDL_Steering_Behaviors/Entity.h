@@ -9,5 +9,7 @@ private:
 	
 public:
 	Entity(Vector2D _position, float _radius);
+	void Draw();
+	void Update();
 };
 
