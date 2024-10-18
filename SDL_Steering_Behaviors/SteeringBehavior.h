@@ -1,4 +1,5 @@
 #pragma once
+#include "Agent.h"
 #include "Vector2D.h"
 
 class Agent;

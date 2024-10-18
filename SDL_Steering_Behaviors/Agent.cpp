@@ -11,7 +11,7 @@ Agent::Agent(SteeringBehavior *_steering_behavior) : sprite_texture(0),
                  position(Vector2D(100, 100)),
 	             target(Vector2D(1000, 100)),
 	             velocity(Vector2D(0,0)),
-	             mass(0.5f),
+	             mass(0.3f),
 	             max_force(50),
 	             max_velocity(200),
 	             orientation(0),
@@ -19,7 +19,8 @@ Agent::Agent(SteeringBehavior *_steering_behavior) : sprite_texture(0),
 				 sprite_num_frames(0),
 	             sprite_w(0),
 	             sprite_h(0),
-	             draw_sprite(false)
+	             draw_sprite(false),
+				 neighbourRadius(200)
 {
 	steering_behavior = _steering_behavior;
 }
@@ -182,4 +183,20 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 		SDL_FreeSurface(image);
 
 	return true;
+}
+
+void Agent::SearchNeighbours(std::vector<Agent*> agents)
+{
+	for (Agent* currentAgent : agents)
+	{
+		if (Vector2D().Distance(currentAgent->getPosition(), getPosition()) < neighbourRadius)
+		{
+			neighbours.push_back(currentAgent);
+		}
+	}
+}
+
+std::vector<Agent*> Agent::GetNeighbours()
+{
+	return neighbours;
 }

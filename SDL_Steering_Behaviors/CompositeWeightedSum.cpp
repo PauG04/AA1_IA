@@ -1,5 +1,4 @@
 #include "CompositeWeightedSum.h"
-#include "AgentManager.h"
 
 Vector2D CompositeWeightedSum::ApplySteeringForce(Agent* agent, float dtime)
 {

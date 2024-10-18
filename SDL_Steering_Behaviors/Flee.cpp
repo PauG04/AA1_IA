@@ -1,5 +1,4 @@
 #include "Flee.h"
-#include "AgentManager.h"
 
 Vector2D Flee::ApplySteeringForce(Agent* agent, float dtime)
 {

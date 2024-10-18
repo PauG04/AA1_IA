@@ -1,5 +1,4 @@
 #include "Seek.h"
-#include "AgentManager.h"
 
 Vector2D Seek::ApplySteeringForce(Agent* agent, float dtime)
 {

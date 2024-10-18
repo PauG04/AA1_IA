@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <SDL.h>
-#include "AgentManager.h"
 
 class Scene
 {

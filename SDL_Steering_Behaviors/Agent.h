@@ -3,6 +3,7 @@
 #include <minmax.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <vector>
 #include "SDL_SimpleApp.h"
 #include "Vector2D.h"
 #include "utils.h"
@@ -31,6 +32,8 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
+	std::vector<Agent*> neighbours;
+	float neighbourRadius;
 
 public:
 	Agent(SteeringBehavior *steering_behavior);
@@ -51,5 +54,7 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
+	void SearchNeighbours(std::vector<Agent*> agents);
+	std::vector<Agent*> GetNeighbours();
 	
 };

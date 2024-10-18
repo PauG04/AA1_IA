@@ -1,5 +1,4 @@
 #include "PathFollowing.h"
-#include "AgentManager.h"
 
 PathFollowing::PathFollowing()
 {
