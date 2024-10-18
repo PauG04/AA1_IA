@@ -8,6 +8,7 @@
 #include "Vector2D.h"
 #include "utils.h"
 #include "SteeringBehavior.h"
+#include "Entity.h"
 
 class Agent
 {
@@ -35,6 +36,8 @@ private:
 	std::vector<Agent*> neighbours;
 	float neighbourRadius;
 
+	std::vector<Entity*> entities;
+
 public:
 	Agent(SteeringBehavior *steering_behavior);
 	~Agent();
@@ -56,5 +59,7 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void SearchNeighbours(std::vector<Agent*> agents);
 	std::vector<Agent*> GetNeighbours();
-	
+	inline void AddEntites(std::vector<Entity*> _entities) { entities = _entities; }
+	inline std::vector<Entity*> GetEntities() { return entities; }
+	 
 };

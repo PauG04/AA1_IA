@@ -16,6 +16,5 @@ public:
 private:
 	std::vector<Agent*> agents;
 	Vector2D target;
-	Entity *entity;
 };
 

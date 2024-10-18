@@ -3,7 +3,6 @@
 
 SceneFlocking::SceneFlocking()
 {
-	
 	for (int i = 0; i < 10; i++)
 	{
 		Agent* agent = new Agent(new Flocking);
@@ -59,5 +58,5 @@ void SceneFlocking::draw()
 
 const char* SceneFlocking::getTitle()
 {
-	return "SDL Steering Behaviors :: PathFollowing Demo";
+	return "SDL Steering Behaviors :: Flocking Demo";
 }

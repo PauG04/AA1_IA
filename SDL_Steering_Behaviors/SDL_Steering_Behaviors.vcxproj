@@ -136,6 +136,7 @@
     <ClInclude Include="Agent.h" />
     <ClInclude Include="Alignment.h" />
     <ClInclude Include="Avoidance.h" />
+    <ClInclude Include="FlockingAvoidance.h" />
     <ClInclude Include="SceneAvoidance.h" />
     <ClInclude Include="Cohesion.h" />
     <ClInclude Include="CompositeWeightedSum.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="Alignment.cpp" />
     <ClCompile Include="Avoidance.cpp" />
+    <ClCompile Include="FlockingAvoidance.cpp" />
     <ClCompile Include="SceneAvoidance.cpp" />
     <ClCompile Include="Cohesion.cpp" />
     <ClCompile Include="CompositeWeightedSum.cpp" />

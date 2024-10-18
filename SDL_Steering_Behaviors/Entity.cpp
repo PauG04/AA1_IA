@@ -13,7 +13,6 @@ Entity::Entity(Vector2D _position, float _radius)
 void Entity::Draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)position.x, (int)position.y, radius, 0, 255, 255, 100);
-	SDL_RenderDrawLine(TheApp::Instance()->getRenderer(), (int)position.x, (int)position.y, (int)(100), (int)(100));
 }
 
 void Entity::Update()
