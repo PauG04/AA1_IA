@@ -20,7 +20,8 @@ Agent::Agent(SteeringBehavior *_steering_behavior) : sprite_texture(0),
 	             sprite_w(0),
 	             sprite_h(0),
 	             draw_sprite(false),
-				 neighbourRadius(200)
+				 neighbourRadius(200),
+				 avoidanceLookAhead(150)
 {
 	steering_behavior = _steering_behavior;
 }
@@ -66,6 +67,11 @@ float Agent::getMaxVelocity()
 float Agent::getMaxForce()
 {
 	return max_force;
+}
+
+float Agent::GetAvoidanceLookAhead()
+{
+	return avoidanceLookAhead;
 }
 
 void Agent::setPosition(Vector2D _position)

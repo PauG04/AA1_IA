@@ -24,9 +24,6 @@ SceneAvoidance::SceneAvoidance()
 	}
 
 	target = Vector2D(640, 360);
-
-	
-
 }
 
 SceneAvoidance::~SceneAvoidance()

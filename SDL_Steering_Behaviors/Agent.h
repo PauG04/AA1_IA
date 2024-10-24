@@ -25,6 +25,7 @@ private:
 	float orientation;
 	float max_force;
 	float max_velocity;
+	float avoidanceLookAhead;
 
 	SDL_Color color;
 
@@ -48,6 +49,7 @@ public:
 	Vector2D getSteering_force();
 	float getMaxVelocity();
 	float getMaxForce();
+	float GetAvoidanceLookAhead();
 	void setPosition(Vector2D position);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);

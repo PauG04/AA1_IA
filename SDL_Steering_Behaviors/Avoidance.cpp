@@ -7,7 +7,35 @@ Avoidance::Avoidance()
 
 Vector2D Avoidance::ApplySteeringForce(Agent* agent, float dtime)
 {
-	float shortestDistance = 1000;
+	/*Vector2D raycast = agent->getPosition();
+	raycast += agent->getVelocity().Normalize() * agent->GetAvoidanceLookAhead();
+
+	Vector2D entityToAgent, intersectionPoint;
+	bool isColliding = false;
+
+	for (Entity* entity : agent->GetEntities())
+	{
+		entityToAgent = entity->GetPosition() - agent->getPosition();
+
+		isColliding = Vector2DUtils::SegmentSegmentIntersection(
+			agent->getPosition(),
+			raycast,
+			entity->GetPosition(),
+			entity->GetPosition() + entityToAgent.Normalize() * entity->GetRadius(),
+			true,
+			&intersectionPoint);
+
+		if (isColliding)
+			break;
+	}
+
+	if (isColliding)
+	{
+		Vector2D avoidTarget = intersectionPoint;
+		avoidTarget +=
+	}*/
+
+	/*float shortestDistance = 1000;
 	Entity* nearestEntity = nullptr;
 	bool collisionDetected = false;
 
@@ -36,7 +64,7 @@ Vector2D Avoidance::ApplySteeringForce(Agent* agent, float dtime)
 		agent->setTarget(nearestEntity->GetPosition());
 		agent->setVelocity(0);
 		return fleeBehaviour->ApplySteeringForce(agent, dtime);
-	}
+	}*/
 
 	return Vector2D();
 }
