@@ -6,9 +6,9 @@ SceneAvoidance::SceneAvoidance()
 {
 	
 	std::vector<Entity*> entities;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		Vector2D obstaclePos = Vector2D(100 + (200 * i), 300);
+		Vector2D obstaclePos = Vector2D(100 + (200 * i), 200);
 		entities.push_back(new Entity(obstaclePos, 50));
 	}
 
@@ -23,7 +23,7 @@ SceneAvoidance::SceneAvoidance()
 		agents.push_back(agent);
 	}
 
-	target = Vector2D(640, 360);
+	
 }
 
 SceneAvoidance::~SceneAvoidance()
@@ -43,8 +43,6 @@ void SceneAvoidance::update(float dtime, SDL_Event* event)
 		if (event->button.button == SDL_BUTTON_LEFT)
 		{
 			target = Vector2D((float)(event->button.x), (float)(event->button.y));
-			for (Agent* agent : agents)
-				agent->setTarget(target);
 		}
 		break;
 	default:
@@ -52,7 +50,10 @@ void SceneAvoidance::update(float dtime, SDL_Event* event)
 	}
 
 	for (Agent* agent : agents)
+	{
+		agent->setTarget(target);
 		agent->update(dtime, event);
+	}
 
 	for (Entity* entity : agents[0]->GetEntities())
 		entity->Update();
