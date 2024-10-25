@@ -1,5 +1,6 @@
 #include "SceneSeek.h"
 #include "Seek.h"
+#include "SDL_SimpleApp.h"
 
 using namespace std;
 

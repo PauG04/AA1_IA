@@ -1,5 +1,6 @@
 #include "ScenePathFollowing.h"
 #include "PathFollowing.h"
+#include "SDL_SimpleApp.h"
 
 ScenePathFollowing::ScenePathFollowing()
 {

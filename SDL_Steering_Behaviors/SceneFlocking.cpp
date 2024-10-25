@@ -1,5 +1,6 @@
 #include "SceneFlocking.h"
 #include "Flocking.h"
+#include "SDL_SimpleApp.h"
 
 SceneFlocking::SceneFlocking()
 {

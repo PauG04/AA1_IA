@@ -4,6 +4,7 @@
 #include "PathFollowing.h"
 #include "Flocking.h"
 #include "CompositeWeightedSum.h"
+#include "SDL_SimpleApp.h"
 
 using namespace std;
 

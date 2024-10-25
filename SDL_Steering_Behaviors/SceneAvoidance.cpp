@@ -1,5 +1,6 @@
 #include "SceneAvoidance.h"
 #include "FlockingAvoidance.h"
+#include "SDL_SimpleApp.h"
 using namespace std;
 
 SceneAvoidance::SceneAvoidance()

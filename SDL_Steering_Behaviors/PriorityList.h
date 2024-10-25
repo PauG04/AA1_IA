@@ -4,7 +4,6 @@ class PriorityList : public SteeringBehavior
 {
 private:
 	std::vector<SteeringBehavior*> steerings;
-	Vector2D force;
 
 public:
 	PriorityList();

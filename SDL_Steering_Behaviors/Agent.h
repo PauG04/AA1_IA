@@ -4,10 +4,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <vector>
-#include "SDL_SimpleApp.h"
 #include "Vector2D.h"
 #include "utils.h"
-#include "SteeringBehavior.h"
 #include "Entity.h"
 
 class Agent
